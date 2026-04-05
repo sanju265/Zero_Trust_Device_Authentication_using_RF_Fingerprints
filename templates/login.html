@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RF Zero Trust Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="grid-noise"></div>
+
+    <div class="login-shell">
+        <form class="login-card" method="post" action="{{ url_for('login_page') }}">
+            <p class="eyebrow">Verified ManySig access</p>
+            <h1>RF Fingerprint Monitoring Login</h1>
+            <p class="login-copy">Login first, then the dashboard page will open and the ManySig pipeline will start.</p>
+            <p class="login-copy">Core methods: <code>Temporal Spectral Graph Autoencoder</code> + <code>Bayesian Zero Trust</code></p>
+            <p class="login-copy">Demo login: <code>admin</code> / <code>rf@secure2026</code></p>
+            <label>
+                <span>Username</span>
+                <input id="username" name="username" type="text" autocomplete="username" required>
+            </label>
+            <label>
+                <span>Password</span>
+                <input id="password" name="password" type="password" autocomplete="current-password" required>
+            </label>
+            <button type="submit">Login And Open Dashboard</button>
+            <p class="login-error">{{ error or "" }}</p>
+        </form>
+    </div>
+</body>
+</html>

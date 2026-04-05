@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RF Zero Trust Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="grid-noise"></div>
+
+    <main class="app-shell ready" id="appShell" aria-hidden="false">
+        <section class="hero">
+            <div>
+                <p class="eyebrow">Enterprise RF identity assurance</p>
+                <h1>Live Device Verification Console</h1>
+                <p class="hero-copy" id="heroCopy">Offline training is complete. Waiting for live verification.</p>
+            </div>
+            <div class="hero-meta">
+                <div class="hero-chip">
+                    <span>Phase</span>
+                    <strong id="phaseBadge">Booting</strong>
+                </div>
+                <div class="hero-chip">
+                    <span>Cycle</span>
+                    <strong id="cycleValue">0</strong>
+                </div>
+                <div class="hero-chip">
+                    <span>Updated</span>
+                    <strong id="updatedValue">--</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="status-strip">
+            <article class="status-panel">
+                <p class="panel-label">System status</p>
+                <h2 id="headlineValue">Starting localhost dashboard</h2>
+                <p id="detailValue">Preparing the browser UI.</p>
+                <div class="status-foot">
+                    <span>Uptime</span>
+                    <strong id="uptimeValue">0s</strong>
+                </div>
+            </article>
+
+            <article class="status-panel soft-panel">
+                <p class="panel-label">Session view</p>
+                <div class="info-grid">
+                    <div>
+                        <span>Phase</span>
+                        <strong id="sessionPhase">Booting</strong>
+                    </div>
+                    <div>
+                        <span>Last refresh</span>
+                        <strong id="refreshValue">--</strong>
+                    </div>
+                    <div>
+                        <span>Report</span>
+                        <strong id="sessionReport">Pending</strong>
+                    </div>
+                </div>
+                <p class="inline-note">Core model: Temporal Spectral Graph Autoencoder. Decision layer: Bayesian Zero Trust trust scoring.</p>
+            </article>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <span>Total devices</span>
+                <strong id="statTotal">0</strong>
+            </article>
+            <article class="stat-card trusted">
+                <span>Legitimate now</span>
+                <strong id="statLegitimate">0</strong>
+            </article>
+            <article class="stat-card compromised">
+                <span>Flagged now</span>
+                <strong id="statFlagged">0</strong>
+            </article>
+            <article class="stat-card suspicious">
+                <span>Blocked attempts</span>
+                <strong id="statBlocked">0</strong>
+            </article>
+            <article class="stat-card offline">
+                <span>Successful auth</span>
+                <strong id="statSuccess">0</strong>
+            </article>
+            <article class="stat-card">
+                <span>Offline</span>
+                <strong id="statOffline">0</strong>
+            </article>
+        </section>
+
+        <section class="content-grid">
+            <article class="content-card wide-card">
+                <div class="card-header">
+                    <div>
+                        <p class="panel-label">Live device evidence</p>
+                        <h2>Per-device threshold comparison</h2>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Device</th>
+                                <th>TX</th>
+                                <th>Registered MAC</th>
+                                <th>Threshold</th>
+                                <th>Current RF score</th>
+                                <th>Decision ratio</th>
+                                <th>Verdict</th>
+                                <th>Last refresh</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deviceTableBody">
+                            <tr>
+                                <td colspan="8" class="empty-state">Waiting for live threshold comparisons.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+            <div class="side-stack">
+                <article class="content-card">
+                    <div class="card-header">
+                        <div>
+                            <p class="panel-label">Decision rule</p>
+                            <h2>How legitimacy is judged</h2>
+                        </div>
+                    </div>
+                    <div class="message-card healthy">
+                        <strong>TSGAE reconstruction</strong>
+                        <p>The Temporal Spectral Graph Autoencoder reconstructs the live RF feature window for each transmitter claim.</p>
+                    </div>
+                    <div class="message-card">
+                        <strong>Profile distance</strong>
+                        <p>Mahalanobis distance checks whether the live RF feature window still matches that device's learned feature profile.</p>
+                    </div>
+                    <div class="message-card warning">
+                        <strong>Bayesian Zero Trust</strong>
+                        <p>The dashboard compares the reconstruction ratio and the profile-distance ratio. The higher one becomes the <code>decision ratio</code>: below <code>0.85x</code> stays legitimate, <code>0.85x-1.00x</code> is treated as suspicious, and above <code>1.00x</code> becomes an impersonation/RF mismatch.</p>
+                    </div>
+                </article>
+
+                <article class="content-card">
+                    <div class="card-header">
+                        <div>
+                            <p class="panel-label">Security feed</p>
+                            <h2>Live alerts</h2>
+                        </div>
+                    </div>
+                    <div class="stack-list" id="alertsList">
+                        <div class="message-card healthy">
+                            <strong>System starting</strong>
+                            <p>Alerts will appear here when live monitoring begins.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="monitor-grid">
+            <article class="content-card">
+                <div class="card-header">
+                    <div>
+                        <p class="panel-label">Attack state</p>
+                        <h2>Current scenario</h2>
+                    </div>
+                </div>
+                <div class="attack-card" id="attackCard">
+                    <p>No active RF identity injection detected.</p>
+                </div>
+                <div class="report-grid">
+                    <div class="report-card">
+                        <strong>Latest attack report</strong>
+                        <p id="reportPath">No attack report saved yet.</p>
+                    </div>
+                    <div class="report-card">
+                        <strong>Paper metrics report</strong>
+                        <p id="metricsPath">Metrics report available from offline training.</p>
+                    </div>
+                    <div class="report-card report-card-wide">
+                        <strong>Session summary report</strong>
+                        <p id="summaryPath">The final session report will appear here after monitoring stops.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="content-card">
+                <div class="card-header">
+                    <div>
+                        <p class="panel-label">Runtime feed</p>
+                        <h2>Activity log</h2>
+                    </div>
+                </div>
+                <div class="activity-list" id="activityList">
+                    <div class="activity-row">
+                        <span>--:--:--</span>
+                        <p>Waiting for activity.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <footer class="app-footer">
+            <div class="footer-block">
+                <span>Copyright</span>
+                <strong>© 2026 RF Authentication System</strong>
+            </div>
+            <div class="footer-block">
+                <span>Support desk</span>
+                <strong>+91 00000 00000</strong>
+            </div>
+            <div class="footer-block">
+                <span>Email</span>
+                <strong>support@secure2026.local</strong>
+            </div>
+            <div class="footer-block">
+                <span>Operations</span>
+                <strong>Mon-Sat | 09:00-18:00 IST</strong>
+            </div>
+        </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
