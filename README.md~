@@ -1,0 +1,146 @@
+# Zero Trust Device Authentication using RF Fingerprints
+
+A machine learning-based device authentication project that uses Radio Frequency (RF) fingerprints to identify and authenticate wireless devices within a Zero Trust security framework.
+
+## Overview
+
+Traditional authentication methods often rely on credentials, device identifiers, or network-level trust. This project explores a Zero Trust approach where devices are continuously evaluated based on their unique RF characteristics.
+
+The system uses RF fingerprinting and machine learning to distinguish between devices based on characteristics present in their wireless signals.
+
+The main objective is to improve device authentication by treating every device as untrusted until its identity is verified.
+
+## Key Features
+
+- RF fingerprint-based device identification
+- Machine learning-based authentication
+- Zero Trust security approach
+- Wireless device classification
+- Feature extraction from RF signal data
+- Model training and evaluation
+- Authentication decision based on predicted device identity
+
+## Project Workflow
+
+RF Signal Data  
+↓  
+Signal Preprocessing  
+↓  
+RF Feature Extraction  
+↓  
+Feature Engineering  
+↓  
+Machine Learning Model  
+↓  
+Device Identification  
+↓  
+Authentication Decision  
+↓  
+Zero Trust Access
+
+## Zero Trust Approach
+
+The project follows the basic principle of Zero Trust:
+
+**“Never trust, always verify.”**
+
+Instead of automatically trusting a device because it is connected to a known network, the system verifies the device using its RF characteristics.
+
+A device is considered legitimate only when its RF fingerprint matches the characteristics learned during model training.
+
+## RF Fingerprinting
+
+RF fingerprinting uses characteristics of wireless transmissions that can vary between physical devices.
+
+These characteristics can be influenced by hardware imperfections and transmitter behavior.
+
+The project uses these RF characteristics as a device-specific signature for authentication.
+
+## Machine Learning
+
+Machine learning is used to learn patterns associated with different wireless devices.
+
+The workflow includes:
+
+- Data preprocessing
+- Feature extraction
+- Feature selection/engineering
+- Model training
+- Model evaluation
+- Device classification
+
+The trained model predicts the identity of an incoming device based on its RF fingerprint.
+
+## Authentication
+
+During authentication, the RF characteristics of a device are provided to the trained model.
+
+The system:
+
+1. Receives RF signal information.
+2. Extracts the relevant features.
+3. Passes the features to the trained ML model.
+4. Predicts the device identity.
+5. Compares the prediction with the expected/authorized device.
+6. Accepts or rejects the device.
+
+This provides an additional layer of authentication beyond conventional credentials.
+
+## Technologies Used
+
+- Python
+- Machine Learning
+- RF Signal Processing
+- Feature Engineering
+- Scikit-learn
+- NumPy
+- Pandas
+- Matplotlib
+- Jupyter Notebook
+
+## Applications
+
+RF fingerprint-based authentication can be explored for:
+
+- IoT device authentication
+- Wireless network security
+- Secure device onboarding
+- Zero Trust networks
+- Industrial IoT
+- Connected devices
+- Wireless intrusion detection
+
+## Advantages
+
+- Device authentication based on physical RF characteristics
+- Reduces reliance on static device identifiers
+- Can complement traditional authentication mechanisms
+- Fits the Zero Trust security model
+- Can be integrated with machine learning-based security systems
+
+## Limitations
+
+- RF characteristics can be affected by environmental conditions.
+- Performance depends on the quality and diversity of RF data.
+- Models trained on a limited set of devices may not generalize to unseen devices.
+- Real-world deployment requires testing under different channel and hardware conditions.
+- RF fingerprinting should be considered an additional authentication mechanism rather than the sole security control.
+
+## Future Improvements
+
+Possible future work includes:
+
+- Testing with larger numbers of devices
+- Real-time RF signal processing
+- Deep learning-based RF fingerprint extraction
+- Testing under different channel conditions
+- Continuous device authentication
+- Integration with IoT security systems
+- Combining RF fingerprints with other device-security features
+- Detection of spoofed or unauthorized devices
+
+## Project Purpose
+
+This project demonstrates how RF fingerprinting and machine learning can be combined with Zero Trust principles to create a device authentication system for wireless environments.
+
+The project is intended for **academic, research, and educational purposes** and can serve as a foundation for further work in wireless security, IoT security, and Zero Trust architectures.
